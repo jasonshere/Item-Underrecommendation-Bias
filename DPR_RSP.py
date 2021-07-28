@@ -290,6 +290,15 @@ num_item = len(train_df['item_id'].unique())
 num_user = len(train_df['user_id'].unique())
 num_genre = len(key_genre)
 
+print("train_df: ", train_df)
+print("vali_df: ", vali_df)
+print("key_genre: ", key_genre)
+print("item_idd_genre_list: ", item_idd_genre_list)
+print("genre_item_vector: ", genre_item_vector)
+print("genre_count: ", genre_count)
+print("user_genre_count: ", user_genre_count)
+print("num_item: {}, num_user: {}, num_genre: {}".format(num_item, num_user, num_genre))
+
 item_genre_list = []
 for u in range(num_item):
     gl = item_idd_genre_list[u]
@@ -299,10 +308,12 @@ for u in range(num_item):
             tmp.append(g)
     item_genre_list.append(tmp)
 
-print('!' * 100)
-print('number of positive feedback: ' + str(len(train_df)))
-print('estimated number of training samples: ' + str(args.neg * len(train_df)))
-print('!' * 100)
+print("item_genre_list: ", item_genre_list)
+
+# print('!' * 100)
+# print('number of positive feedback: ' + str(len(train_df)))
+# print('estimated number of training samples: ' + str(args.neg * len(train_df)))
+# print('!' * 100)
 
 # genreate item_genre matrix
 item_genre = np.zeros((num_item, num_genre))
@@ -311,6 +322,7 @@ for i in range(num_item):
     for k in range(num_genre):
         if key_genre[k] in gl:
             item_genre[i, k] = 1.0
+print("item_genre: ", item_genre)
 
 genre_count_mean_reciprocal = []
 for k in key_genre:
@@ -319,6 +331,10 @@ genre_count_mean_reciprocal = (np.array(genre_count_mean_reciprocal)).reshape((n
 genre_error_weight = np.dot(item_genre, genre_count_mean_reciprocal)
 
 args.num_genre = num_genre
+print("genre_count_mean_reciprocal: ", genre_count_mean_reciprocal)
+print("genre_error_weight: ", genre_error_weight)
+print("num_genre: ", num_genre)
+exit()
 
 precision = np.zeros(4)
 recall = np.zeros(4)
