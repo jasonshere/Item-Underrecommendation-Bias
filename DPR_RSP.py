@@ -334,7 +334,7 @@ args.num_genre = num_genre
 print("genre_count_mean_reciprocal: ", genre_count_mean_reciprocal)
 print("genre_error_weight: ", genre_error_weight)
 print("num_genre: ", num_genre)
-exit()
+# exit()
 
 precision = np.zeros(4)
 recall = np.zeros(4)
