@@ -156,6 +156,7 @@ class DPR_RSP:
             self.all_optimizer = tf.train.AdamOptimizer(learning_rate=self.lr_r).minimize(self.all_cost, var_list=para_r)
 
     def train_model(self, itr):
+        print(itr)
         NS_start_time = time.time() * 1000.0
         epoch_r_cost = 0.0
         epoch_s_cost = 0.0
